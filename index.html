@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>APM Raiser</title>
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <style>
+
+        body {
+            display: -ms-flexbox;
+            display: flex;
+            color: #fff;
+            text-shadow: 0 0.05rem 0.1rem rgba(0, 0, 0, .5);
+            box-shadow: inset 0 0 5rem rgba(0, 0, 0, .5);
+        }
+
+        html, body {
+            height: 100%;
+            background-color: #333;
+        }
+
+        .cover-container {
+            max-width: 42em;
+        }
+
+        .nav-masthead .nav-link {
+            padding: .25rem 0;
+            font-weight: 700;
+            color: rgba(255, 255, 255, .5);
+            background-color: transparent;
+            border-bottom: .25rem solid transparent;
+        }
+
+        .mastfoot {
+            color: rgba(255, 255, 255, .5);
+        }
+
+        .nav-masthead .active {
+            color: #fff;
+            border-bottom-color: #fff;
+        }
+
+        .cover .btn {
+            font-weight: 700;
+        }
+
+        #key_to_press {
+            font-size: 50px;
+        }
+
+    </style>
+</head>
+<body class="">
+
+    <div class="cover-container d-flex w-100 h-100 p-3 mx-auto flex-column">
+        
+        <div class="cover-container d-flex w-100 h-100 p-3 mx-auto flex-column">
+            <header class="masthead mb-auto">
+              <div class="inner">
+                <span class="h3 masthead-brand">APM Raiser</span>
+                <nav class="nav nav-masthead justify-content-center float-right">
+                  <a class="nav-link active" href="#">Home</a>
+                </nav>
+              </div>
+            </header>
+          
+            <main role="main" class="inner cover text-center">
+              <h1 class="cover-heading">Raise your APM.</h1>
+              <p class="lead">Press the prompted keys. You have 60 seconds. Go!</p>
+
+              <button class="btn btn-light" id="start_id" onclick="startGame()">START!</button>   
+              
+              <br/><br/><br>
+              
+              <h1><span class="badge badge-light" id="key_to_press"></span></h1>
+              
+              <br><br><br>
+              
+              <h3><span id="correct_num" style="display:none;" class="badge badge-success">Correct: 0</span></h3>
+              
+              <br><br><br>
+             
+              <div id="timer" class="lead"></div>
+             
+              <br/>
+             
+              <button class="btn btn-light" id="go_agane" style="display:none;" onclick="resetGame()">GO AGANE!</button>
+
+            </main>
+          
+            <footer class="mastfoot mt-auto">
+                <div class="inner text-center">
+                 <p>made by <a href="https://twitter.com/trll_ez">@trll_ez</a>.</p>
+                </div>
+            </footer>
+          </div>
+
+    </div>
+
+<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+
+<script>
+
+var mytimeout;
+
+function countdown() {
+    var seconds = 60;
+    function tick() {
+        var counter = document.getElementById("timer");
+        seconds--;
+        counter.innerHTML = "time remaining: " + seconds;
+        if( seconds > 0 ) {
+            mytimeout = setTimeout(tick, 1000);
+        } else {
+            document.getElementById("key_to_press").innerHTML = "time's up";
+        }
+    }
+    tick();
+}
+
+
+var keyarray = [
+    '1',
+    '2',
+    '3',
+    '4',
+    '5',
+    '6',
+    'Control + 1',
+    'Control + 2',
+    'Control + 3',
+    'Control + 4',
+    'Control + 5',
+    'Control + 6',
+    'Shift + 1',
+    'Shift + 2',
+    'Shift + 3',
+    'Shift + 4',
+    'Shift + 5',
+    'Shift + 6',
+    'Q',
+    'W',
+    'E',
+    'R',
+    'A',
+    'S',
+    'D',
+    'F',
+    'F1',
+    'F2',
+    'F3',
+    'Z',
+    'X',
+    'C',
+    'V',
+    'Tab',
+    '`'
+]
+
+var gameStart= false;
+var correctNum = 0;
+var randomKey;
+var keysPressed = [];
+var keysWanted = [];
+
+function startGame(){
+    document.getElementById("start_id").style.display = "none";
+    document.getElementById("go_agane").style.display = "inline-block";
+    document.getElementById("correct_num").style.display = "inline-block";
+    gameStart = true;
+    
+    getNewKey();
+    countdown()
+}
+
+function resetGame(){
+    location.reload();
+}
+
+function getNewKey(){
+    randomKey = Math.floor(Math.random()*keyarray.length);
+
+    document.getElementById("key_to_press").innerHTML = keyarray[randomKey];
+
+    keysWanted = keyarray[randomKey].split(" + ");
+}
+
+document.addEventListener('keydown', (event) => {
+    event.preventDefault();
+    
+    if(event.shiftKey == true && event.which != 16){
+        keysPressed.push(event.code.substring(5))
+    }else{
+        keysPressed.push(event.key);
+    }
+
+    if(keysPressed.join().toLowerCase() === keysWanted.join().toLowerCase()){
+        correctNum++;
+        document.getElementById("correct_num").innerHTML = "Correct: " +  correctNum;       
+        getNewKey();
+    }
+
+});
+
+document.addEventListener('keyup', (event) => {
+   keysPressed = [];
+});
+
+</script>
+</body>
+</html>
