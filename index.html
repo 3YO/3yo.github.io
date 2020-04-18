@@ -105,23 +105,11 @@
 
 <script>
 
-var mytimeout;
-
-function countdown() {
-    var seconds = 60;
-    function tick() {
-        var counter = document.getElementById("timer");
-        seconds--;
-        counter.innerHTML = "time remaining: " + seconds;
-        if( seconds > 0 ) {
-            mytimeout = setTimeout(tick, 1000);
-        } else {
-            document.getElementById("key_to_press").innerHTML = "time's up";
-        }
-    }
-    tick();
-}
-
+var gameStart= false;
+var correctNum = 0;
+var randomKey;
+var keysPressed = [];
+var keysWanted = [];
 
 var keyarray = [
     '1',
@@ -161,11 +149,21 @@ var keyarray = [
     '`'
 ]
 
-var gameStart= false;
-var correctNum = 0;
-var randomKey;
-var keysPressed = [];
-var keysWanted = [];
+function countdown() {
+    var seconds = 60;
+    function tick() {
+        var counter = document.getElementById("timer");
+        seconds--;
+        counter.innerHTML = "time remaining: " + seconds;
+        if( seconds > 0 ) {
+            setTimeout(tick, 1000);
+        } else {
+            gameStart = false;
+            document.getElementById("key_to_press").innerHTML = "time's up";
+        }
+    }
+    tick();
+}
 
 function startGame(){
     document.getElementById("start_id").style.display = "none";
@@ -198,10 +196,12 @@ document.addEventListener('keydown', (event) => {
         keysPressed.push(event.key);
     }
 
-    if(keysPressed.join().toLowerCase() === keysWanted.join().toLowerCase()){
-        correctNum++;
-        document.getElementById("correct_num").innerHTML = "Correct: " +  correctNum;       
-        getNewKey();
+    if(gameStart){
+        if(keysPressed.join().toLowerCase() === keysWanted.join().toLowerCase()){
+            correctNum++;
+            document.getElementById("correct_num").innerHTML = "Correct: " +  correctNum;       
+            getNewKey();
+        }
     }
 
 });
