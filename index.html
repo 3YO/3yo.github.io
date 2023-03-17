@@ -1,248 +1,297 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>APM Raiser</title>
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>First Then</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css"
+    />
 
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css"
+    />
+
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/select2-bootstrap-5-theme@1.3.0/dist/select2-bootstrap-5-theme.min.css"
+    />
+
     <style>
+      body {
+        /* font-family: Arial, sans-serif; */
+        margin: 0;
+        padding: 0;
+        /* background-color: #95bdff; */
+        /* font-family: "Mystery Quest", cursive; */
+        background: linear-gradient(90deg, #69b7eb, #b3dbd3, #f4d6db);
+        color: #212529;
+        font-family: "Roboto", sans-serif;
+      }
 
-        body {
-            display: -ms-flexbox;
-            display: flex;
-            color: #fff;
-            text-shadow: 0 0.05rem 0.1rem rgba(0, 0, 0, .5);
-            box-shadow: inset 0 0 5rem rgba(0, 0, 0, .5);
-        }
+      .container {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        width: 90%;
+        height: 100vh;
+        margin: 0 auto;
+      }
 
-        html, body {
-            height: 100%;
-            background-color: #333;
-        }
+      .box-wrapper {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: calc(50% - 10px);
+      }
 
-        .cover-container {
-            max-width: 42em;
-        }
+      .box-title {
+        margin-bottom: 10px;
+        /* font-family: "Mystery Quest", cursive; */
+        font-size: 50px;
+      }
 
-        .nav-masthead .nav-link {
-            padding: .25rem 0;
-            font-weight: 700;
-            color: rgba(255, 255, 255, .5);
-            background-color: transparent;
-            border-bottom: .25rem solid transparent;
-        }
+      .box {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        height: 400px;
+        background-color: white;
+        padding: 10px;
+        box-sizing: border-box;
+        border-radius: 8px;
+        border: solid;
+        border-color: #609966;
+        border-width: 3px;
+      }
 
-        .mastfoot {
-            color: rgba(255, 255, 255, .5);
-        }
+      .dropdown {
+        width: 100%;
+        margin-bottom: 10px;
+      }
 
-        .nav-masthead .active {
-            color: #fff;
-            border-bottom-color: #fff;
-        }
+      .item-display {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        /* background-color: #fff; */
+        border-radius: 4px;
+        overflow: hidden;
+        margin-bottom: 10px;
+      }
 
-        .cover .btn {
-            font-weight: 700;
-        }
+      .item-display img {
+        max-width: 100%;
+        max-height: 100%;
+        object-fit: contain;
+      }
 
-        #key_to_press {
-            font-size: 50px;
-        }
-
+      /* .clear-btn {
+          background-color: #ff4081;
+          color: #fff;
+          border: none;
+          border-radius: 4px;
+          padding: 6px 12px;
+          cursor: pointer;
+        } */
     </style>
-</head>
-<body class="">
+  </head>
+  <body>
+    <div class="container">
+      <div class="box-wrapper">
+        <h1 class="box-title">First</h1>
+        <div class="box">
+          <select id="dropdown-1" class="form-select dropdown">
+            <!-- Options will be populated by JavaScript -->
+          </select>
+          <div class="item-display"></div>
+          <button id="clear-dd1" class="btn btn-light btn-sm clear-btn">
+            <i class="bi bi-trash3"></i>
+          </button>
+        </div>
+      </div>
 
-    <div class="cover-container d-flex w-100 h-100 p-3 mx-auto flex-column">
-        
-        <div class="cover-container d-flex w-100 h-100 p-3 mx-auto flex-column">
-            <header class="masthead mb-auto">
-              <div class="inner">
-                <span class="h3 masthead-brand">APM Raiser</span>
-                <nav class="nav nav-masthead justify-content-center float-right">
-                  <a class="nav-link active" href="#">Home</a>
-                </nav>
-              </div>
-            </header>
-          
-            <main role="main" class="inner cover text-center">
-              <h1 class="cover-heading">Raise your APM.</h1>
-              <p class="lead">Press the prompted keys. You have 60 seconds. Go!</p>
-
-              <button class="btn btn-light" id="start_id" onclick="startGame()">START!</button>   
-              
-              <br/><br/><br>
-              
-              <h1><span class="badge badge-light" id="key_to_press"></span></h1>
-              
-              <br><br><br>
-              
-              <h3><span id="correct_num" style="display:none;" class="badge badge-success">Correct: 0</span></h3>
-              
-              <br><br><br>
-             
-              <div id="timer" class="lead"></div>
-             
-              <br/>
-             
-              <button class="btn btn-light" id="go_agane" style="display:none;" onclick="resetGame()">GO AGANE!</button>
-
-            </main>
-          
-            <footer class="mastfoot mt-auto">
-                <div class="inner text-center">
-                 <p>made by <a href="https://twitter.com/trll_ez">@trll_ez</a>.</p>
-                </div>
-            </footer>
-          </div>
-
+      <div class="box-wrapper">
+        <h1 class="box-title">Then</h1>
+        <div class="box">
+          <select id="dropdown-2" class="form-select dropdown">
+            <!-- Options will be populated by JavaScript -->
+          </select>
+          <div class="item-display"></div>
+          <button id="clear-dd2" class="btn btn-light btn-sm clear-btn">
+            <i class="bi bi-trash3"></i>
+          </button>
+        </div>
+      </div>
     </div>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"
+      integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js"
+      integrity="sha384-mQ93GR66B00ZXjt0YO5KlohRA5SY2XofN4zfuZxLkoj1gXtW8ANNCe9d5Y3eG5eD"
+      crossorigin="anonymous"
+    ></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.0/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+    <script>
+      var itemsMap = {
+        Ipad: "https://i.ibb.co/Y35rwPG/ipad.webp",
+        Playdoh: "https://i.ibb.co/YpRJx5B/playdoh.jpg",
+        Crayons: "https://i.ibb.co/5cyhmjR/crayons.jpg",
+        Puzzles: "https://i.ibb.co/mqSjjWt/Puzzles.jpg",
+        Balls: "https://i.ibb.co/cbnb56C/balls.jpg",
+        Paint: "https://i.ibb.co/hM4qyzg/paint.png",
+        Bubbles: "https://i.ibb.co/g6Cg2KB/bubbles.webp",
+        "Bubble wand": "https://i.ibb.co/Y2pQc26/bubblwand.webp",
+        Books: "https://i.ibb.co/Sxh2R2w/books.webp",
+        "Potato head": "https://i.ibb.co/BCWjYx9/potatohead.jpg",
+        "Train tracks": "https://i.ibb.co/C9zPvk0/traintracks.jpg",
+        Cars: "https://i.ibb.co/KwBjztR/cars.jpg",
+        Dinosaurs: " https://i.ibb.co/bgCZLsH/dinosaurs.jpg",
+        Legos: "https://i.ibb.co/N6kqQjV/legos.webp",
+        "Bristle blocks": "https://i.ibb.co/zP3q0Qy/bristleblocks.jpg",
+        "Mega blocks": "https://i.ibb.co/mhmpbD6/megablocks.jpg",
+        "Circle time": "https://i.ibb.co/FhBykGx/circletime.jpg",
+        "Circle time PECS": "https://i.ibb.co/DCB3M4r/circletimepecs.gif",
+        Swim: "https://i.ibb.co/HVxG0T9/swim.jpg",
+        Outside: "https://i.ibb.co/XVgzFvC/Outside.jpg",
+        Gym: "https://i.ibb.co/mqFsSzZ/Gym.jpg",
+        "Owl room": "https://i.ibb.co/C5jWGrd/Owl-room.jpg",
+        Speech: "https://i.ibb.co/C2rnpHr/Speech.jpg",
+        OT: "https://i.ibb.co/19Y7ZDM/ot.jpg",
+        "Lunch/Snack/food": "https://i.ibb.co/WxJhptG/lunchbox.webp",
+        "Water bottle": "https://i.ibb.co/HFzjgcc/water.jpg",
+        Microwave: "https://i.ibb.co/QKcJN67/microwave.webp",
+        "Pull-ups": "https://i.ibb.co/RPdV5tZ/pullups.jpg",
+        Potty: "https://i.ibb.co/g7rBWcX/potty.png",
+        "Change clothes": "https://i.ibb.co/T40dppb/change-clothes.png",
+        Backpack: "https://i.ibb.co/r4Fv3Z1/backpack.jpg",
+        Cubbies: "https://i.ibb.co/b7brygB/cubbies.webp",
+        Ribbon: "https://i.ibb.co/VwWWLJz/ribbon.jpg",
+        "Ribbon stick": "https://i.ibb.co/BTG6B2P/ribbon-stick.jpg",
+        "Play/toys": "https://i.ibb.co/wSRtxFj/toys.jpg",
+        Home: "https://i.ibb.co/JKWqPsw/home.webp",
+        "Gumball toy": "https://i.ibb.co/kBpLCdT/gumball.jpg",
+        "Car track": "https://i.ibb.co/3CQGYfy/cartrack.webp",
+        "Food toys": "https://i.ibb.co/Hzwg8LH/food-toys.jpg",
+        "Kitchen toy": "https://i.ibb.co/sQRkpVZ/kitchen-toy.webp",
+        Tools: "https://i.ibb.co/fYMsdWW/tools.webp",
+      };
+      document.addEventListener("DOMContentLoaded", () => {
+        const dropdowns = document.querySelectorAll(".dropdown");
+        const clearBtns = document.querySelectorAll(".clear-btn");
 
-<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+        dropdowns.forEach((dropdown) => {
+          populateDropdown(dropdown, itemsMap);
+        });
 
-<script>
+        clearBtns.forEach((btn) => {
+          btn.addEventListener("click", () => {
+            const box = btn.parentElement;
+            const display = box.querySelector(".item-display");
+            display.innerHTML = "";
+          });
+        });
+      });
 
-var gameStart= false;
-var correctNum = 0;
-var randomKey;
-var keysPressed = [];
-var keysWanted = [];
+      $(document).ready(function () {
+        let dd1 = $("#dropdown-1");
+        dd1.html(
+          dd1.find("option:gt(0)").sort(function (option1, option2) {
+            return $(option1).text() < $(option2).text() ? -1 : 1;
+          })
+        );
 
-/*var keyarray = [
-    '1',
-    '2',
-    '3',
-    '4',
-    '5',
-    '6',
-    'Control + 1',
-    'Control + 2',
-    'Control + 3',
-    'Control + 4',
-    'Control + 5',
-    'Control + 6',
-    'Shift + 1',
-    'Shift + 2',
-    'Shift + 3',
-    'Shift + 4',
-    'Shift + 5',
-    'Shift + 6',
-    'Q',
-    'W',
-    'E',
-    'R',
-    'A',
-    'S',
-    'D',
-    'F',
-    'F1',
-    'F2',
-    'F3',
-    'Z',
-    'X',
-    'C',
-    'V',
-    'Tab',
-    '`'
-]
-*/
+        let dd2 = $("#dropdown-2");
+        dd2.html(
+          dd2.find("option:gt(0)").sort(function (option1, option2) {
+            return $(option1).text() < $(option2).text() ? -1 : 1;
+          })
+        );
 
-var keyarray = [
-    '1', '1',
-    '2', '2',
-    '3', '3',
-    '4', '4',
-    '5',
-    '6',
-    'Control + 1',
-    'Control + 2',
-    'Control + 3',
-    'Control + 4',
-    'Shift + 1',
-    'Shift + 2',
-    'Shift + 3',
-    'Shift + 4',
-    'Q', 'Q',
-    'W', 'W',
-    'E', 'E',
-    'R', 'R',
-    'A',
-    'S',
-    'D',
-    'F',
-    'Z',
-    'X',
-    'C',
-    'V',
-    'Tab',
-    '`'
-]
+        $("#dropdown-1").prepend(
+          "<option value='' selected='selected'></option>"
+        );
+        $("#dropdown-2").prepend(
+          "<option value='' selected='selected'></option>"
+        );
 
-function countdown() {
-    var seconds = 60;
-    function tick() {
-        var counter = document.getElementById("timer");
-        seconds--;
-        counter.innerHTML = "time remaining: " + seconds;
-        if( seconds > 0 ) {
-            setTimeout(tick, 1000);
-        } else {
-            gameStart = false;
-            document.getElementById("key_to_press").innerHTML = "time's up";
+        $("#dropdown-1").select2({
+          theme: "bootstrap-5",
+        });
+        $("#dropdown-2").select2({
+          theme: "bootstrap-5",
+        });
+      });
+
+      $("#dropdown-1").change(function (e) {
+        const box = e.target.parentElement;
+        const display = box.querySelector(".item-display");
+        display.innerHTML = ""; // Clear the div before adding the new image
+        console.log("target value = ", itemsMap[e.target.value]);
+        if (e.target.value) {
+          const img = document.createElement("img");
+          img.src = itemsMap[e.target.value];
+          img.alt = e.target.value;
+          display.appendChild(img);
         }
-    }
-    tick();
-}
+      });
 
-function startGame(){
-    document.getElementById("start_id").style.display = "none";
-    document.getElementById("go_agane").style.display = "inline-block";
-    document.getElementById("correct_num").style.display = "inline-block";
-    gameStart = true;
-    
-    getNewKey();
-    countdown()
-}
-
-function resetGame(){
-    location.reload();
-}
-
-function getNewKey(){
-    randomKey = Math.floor(Math.random()*keyarray.length);
-
-    document.getElementById("key_to_press").innerHTML = keyarray[randomKey];
-
-    keysWanted = keyarray[randomKey].split(" + ");
-}
-
-document.addEventListener('keydown', (event) => {
-    event.preventDefault();
-    console.log(event.key);
-
-    if(event.shiftKey == true && event.which != 16){
-        keysPressed.push(event.code.substring(5))
-    }else{
-        keysPressed.push(event.key);
-    }
-
-    if(gameStart){
-        if(keysPressed.join().toLowerCase() === keysWanted.join().toLowerCase()){
-            correctNum++;
-            document.getElementById("correct_num").innerHTML = "Correct: " +  correctNum;       
-            getNewKey();
+      $("#dropdown-2").change(function (e) {
+        const box = e.target.parentElement;
+        const display = box.querySelector(".item-display");
+        display.innerHTML = ""; // Clear the div before adding the new image
+        console.log("target value = ", itemsMap[e.target.value]);
+        if (e.target.value) {
+          const img = document.createElement("img");
+          img.src = itemsMap[e.target.value];
+          img.alt = e.target.value;
+          display.appendChild(img);
         }
-    }
+      });
 
-});
+      $("#clear-dd1").on("click", function () {
+        $("#dropdown-1").val(null).trigger("change");
+      });
+      $("#clear-dd2").on("click", function () {
+        $("#dropdown-2").val(null).trigger("change");
+      });
 
-document.addEventListener('keyup', (event) => {
-   keysPressed = [];
-});
-
-</script>
-</body>
+      function populateDropdown(dropdown, itemsMap) {
+        for (const key in itemsMap) {
+          const option = document.createElement("option");
+          option.value = key;
+          option.textContent = key;
+          dropdown.appendChild(option);
+        }
+      }
+    </script>
+  </body>
 </html>
